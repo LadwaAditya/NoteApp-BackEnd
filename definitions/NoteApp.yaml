@@ -1,36 +1,361 @@
+paths:
+  /notes:
+    post:
+      tags:
+        - note
+      summary: Create a new instance of the model and persist it into the data source.
+      operationId: note.create
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+    put:
+      tags:
+        - note
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: note.upsert__put_notes
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+    patch:
+      tags:
+        - note
+      summary: Patch an existing model instance or insert a new one into the data source.
+      operationId: note.upsert__patch_notes
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+    get:
+      tags:
+        - note
+      summary: Find all instances of the model matched by filter from the data source.
+      operationId: note.find
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/note'
+      deprecated: false
+  /notes/replaceOrCreate:
+    post:
+      tags:
+        - note
+      summary: Replace an existing model instance or insert a new one into the data source.
+      operationId: note.replaceOrCreate
+      parameters:
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+  '/notes/{id}/exists':
+    get:
+      tags:
+        - note
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'note.exists__get_notes_{id}_exists'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+  '/notes/{id}':
+    head:
+      tags:
+        - note
+      summary: Check whether a model instance exists in the data source.
+      operationId: 'note.exists__head_notes_{id}'
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+      deprecated: false
+    get:
+      tags:
+        - note
+      summary: 'Find a model instance by {{id}} from the data source.'
+      operationId: note.findById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: filter
+          in: query
+          description: Filter defining fields and include
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+    delete:
+      tags:
+        - note
+      summary: 'Delete a model instance by {{id}} from the data source.'
+      operationId: note.deleteById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+      deprecated: false
+    put:
+      tags:
+        - note
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'note.prototype.updateAttributes__put_notes_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+    patch:
+      tags:
+        - note
+      summary: Patch attributes for a model instance and persist it into the data source.
+      operationId: 'note.prototype.updateAttributes__patch_notes_{id}'
+      parameters:
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+        - name: id
+          in: path
+          description: PersistedModel id
+          required: true
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+  '/notes/{id}/replace':
+    post:
+      tags:
+        - note
+      summary: Replace attributes for a model instance and persist it into the data source.
+      operationId: note.replaceById
+      parameters:
+        - name: id
+          in: path
+          description: Model id
+          required: true
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: Model instance data
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+  /notes/findOne:
+    get:
+      tags:
+        - note
+      summary: Find first instance of the model matched by filter from the data source.
+      operationId: note.findOne
+      parameters:
+        - name: filter
+          in: query
+          description: 'Filter defining fields, where, include, order, offset, and limit'
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            $ref: '#/definitions/note'
+      deprecated: false
+  /notes/update:
+    post:
+      tags:
+        - note
+      summary: 'Update instances of the model matched by {{where}} from the data source.'
+      operationId: note.updateAll
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+        - name: data
+          in: body
+          description: An object of model property name/value pairs
+          required: false
+          schema:
+            $ref: '#/definitions/note'
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            description: The number of instances updated
+            type: object
+      deprecated: false
+  /notes/count:
+    get:
+      tags:
+        - note
+      summary: Count instances of the model matched by where from the data source.
+      operationId: note.count
+      parameters:
+        - name: where
+          in: query
+          description: Criteria to match model instances
+          required: false
+          type: string
+          format: JSON
+      responses:
+        '200':
+          description: Request was successful
+          schema:
+            type: object
+            properties:
+              count:
+                type: number
+                format: double
+      deprecated: false
+definitions:
+  note:
+    properties:
+      name:
+        type: string
+      id:
+        type: number
+        format: double
+    additionalProperties: false
+  x-any:
+    properties: {}
+basePath: /api
 swagger: '2.0'
-
 info:
   x-ibm-name: noteapp
   version: 1.0.0
   title: NoteApp
-
 schemes:
   - https
 host: $(catalog.host)
-basePath: /api
-
 consumes:
   - application/json
 produces:
   - application/json
-
 securityDefinitions:
- clientIdHeader:
-   type: apiKey
-   in: header
-   name: X-IBM-Client-Id
- clientSecretHeader:
-   in: "header"
-   name: "X-IBM-Client-Secret"
-   type: "apiKey"
-
-
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  clientSecretHeader:
+    in: header
+    name: X-IBM-Client-Secret
+    type: apiKey
 security:
- -
-   clientIdHeader: []
-   clientSecretHeader: []
-
+  - clientIdHeader: []
+    clientSecretHeader: []
 x-ibm-configuration:
   testable: true
   enforced: true
@@ -47,9 +372,3 @@ x-ibm-configuration:
     execute:
       - invoke:
           target-url: $(runtime-url)$(request.path)$(request.search)
-
-paths: {}
-
-
-definitions: {}
-
