@@ -328,6 +328,8 @@ definitions:
       id:
         type: number
         format: double
+    required:
+      - name
     additionalProperties: false
   x-any:
     properties: {}
