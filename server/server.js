@@ -3,11 +3,6 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 
-var passport = require('passport');
-var MCABackendStrategy = require('bms-mca-token-validation-strategy').MCABackendStrategy;
-passport.use(new MCABackendStrategy())
-app.use(passport.initialize());
-app.delete('/api/notes/:id', passport.authenticate('mca-backend-strategy', {session: false}));
 app.start = function() {
   // start the web server
   return app.listen(function() {
